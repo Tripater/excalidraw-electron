@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Waiting Excalidraw…</title>
+  <style>
+	body {
+	  display: flex;
+	  justify-content: center;
+	  align-items: center;
+	  height: 100vh;
+	  background-color: #f5f5f5;
+	  margin: 0;
+	  font-family: Arial, sans-serif;
+	}
+	.spinner-container {
+	  position: relative;
+	  width: 120px;
+	  height: 120px;
+	  transform: scale(1.5);
+	}
+	.icon {
+	  width: 75px;
+	  height: 75px;
+	  position: absolute;
+	  top: 50%;
+	  left: 50%;
+	  transform: translate(-50%, -50%);
+	}
+	.spinner {
+	  border-top: 6px solid #5658cc;
+	  border-radius: 50%;
+	  width: 100%;
+	  height: 100%;
+	  animation: spin 2s linear infinite;
+	}
+	@keyframes spin {
+	  0% { transform: rotate(0deg); }
+	  100% { transform: rotate(360deg); }
+	}
+  </style>
+</head>
+<body>
+  <div class="spinner-container">
+	<img src="../assets/icon.ico" alt="Excalidraw Icon" class="icon">
+	<div class="spinner"></div>
+  </div>
+</body>
+</html>

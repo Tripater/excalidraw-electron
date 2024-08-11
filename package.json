@@ -1,0 +1,84 @@
+{
+  "homepage": "./",
+  "name": "excalidraw-electron",
+  "version": "1.0.0",
+  "main": "public/electron.mjs",
+  "browserslist": [
+	"last 1 chrome version",
+	"last 1 firefox version",
+	"last 1 safari version"
+  ],
+  "scripts": {
+	"start": "react-app-rewired start",
+	"build": "react-app-rewired build",
+	"electron": "electron .",
+	"electron-dev": "concurrently \"cross-env BROWSER=none npm start\" \"wait-on http://localhost:3000 && electron .\"",
+	"electron-pack": "electron-builder -c.extraMetadata.main=build/electron.mjs",
+	"dist": "npm run build && npm run electron-pack"
+  },
+  "dependencies": {
+	"@excalidraw/excalidraw": "0.17.1-54491d1",
+	"electron-is-dev": "^3.0.1",
+	"react": "^18.3.1",
+	"react-dom": "^18.3.1",
+	"react-scripts": "^5.0.1",
+	"roughjs": "^4.6.6",
+	"typescript": "^4.9.5"
+  },
+  "devDependencies": {
+	"cross-env": "^7.0.3",
+	"customize-cra": "^1.0.0",
+	"electron": "^31.3.1",
+	"electron-builder": "24.13.0",
+	"react-app-rewired": "^2.2.1",
+	"wait-on": "^7.2.0"
+  },
+  "build": {
+	"appId": "com.tripater.excalidraw-electron",
+	"productName": "ExcalidrawElectron",
+	"directories": {
+	  "buildResources": "assets",
+	  "output": "dist"
+	},
+	"files": [
+	  "build/**/*",
+	  "src/**/*",
+	  "assets/**/*",
+	  "public/**/*"
+	],
+	"extraMetadata": {
+	  "main": "public/electron.mjs"
+	},
+	"mac": {
+	  "target": [
+		"dmg",
+		"zip"
+	  ],
+	  "icon": "assets/icon.icns"
+	},
+	"win": {
+	  "target": [
+		{
+		  "target": "nsis",
+		  "arch": [
+			"x64"
+		  ]
+		},
+		{
+		  "target": "portable",
+		  "arch": [
+			"x64"
+		  ]
+		}
+	  ],
+	  "icon": "assets/icon.ico"
+	},
+	"linux": {
+	  "target": [
+		"AppImage",
+		"deb"
+	  ],
+	  "icon": "assets/icon.png"
+	}
+  }
+}

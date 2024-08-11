@@ -1,0 +1,113 @@
+# Node modules
+node_modules/
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+pnpm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Dependency directories
+jspm_packages/
+pnpm-lock.yaml
+
+# Optional npm cache directory
+.npm/
+
+# Optional eslint cache
+.eslintcache
+
+# Build directories for React
+build/
+dist/
+
+# Build directories for Electron
+out/
+release/
+
+# Generated files
+*.d.ts
+*.js.map
+
+# OS-specific files
+.DS_Store
+Thumbs.db
+
+# IDE-specific files
+.idea/
+.vscode/
+
+# Babel and TypeScript
+.cache/
+*.tsbuildinfo
+
+# Testing
+coverage/
+.jest/
+
+# Serverless directories
+.serverless/
+.webpack/
+
+# Next.js build output
+.next/
+# Nuxt.js build output
+.nuxt/
+
+# Production environment variables
+.env.production.local
+
+# Local environment variables
+.env.local
+
+# Miscellaneous
+*.pem
+*.p12
+*.csr
+*.crt
+*.pfx
+*.key
+
+# Built application files
+**/app/build/
+
+# Electron
+*.asar
+*.node
+.electron-gyp
+.cache/electron-builder/
+
+# MAC files
+.AppleDouble
+.LSOverride
+
+# Windows thumbnail cache files
+Thumbs.db
+ehthumbs.db
+
+# Folder config file
+Desktop.ini
+
+# Recycle Bin used on file shares
+$RECYCLE.BIN/
+
+# Project localization files
+*.local
+
+# Database files
+*.sql
+*.sqlite
+
+# Environment variables
+.env
+.env.test
+
+# Ignore IDE config files
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
