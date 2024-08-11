@@ -1,7 +1,15 @@
 {
   "homepage": "./",
   "name": "excalidraw-electron",
+  "description": "A simple Electron wrapper for Excalidraw. "
   "version": "1.0.0",
+  "author": "Damiano Ernesti",
+  "license": "MIT",
+  "private": true,
+  "repository": {
+	"type": "git",
+	"url": "git+https://github.com/Tripater/excalidraw-electron.git"
+  },
   "main": "public/electron.mjs",
   "browserslist": [
 	"last 1 chrome version",
