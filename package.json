@@ -1,7 +1,7 @@
 {
   "homepage": "./",
   "name": "excalidraw-electron",
-  "description": "A simple Electron wrapper for Excalidraw. "
+  "description": "A simple Electron wrapper for Excalidraw.",
   "version": "1.0.0",
   "author": "Damiano Ernesti",
   "license": "MIT",
