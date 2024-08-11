@@ -35,7 +35,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: windows-dist
-        path: dist/
+        path: dist/windows_dist.zip
 
   build_linux:
     runs-on: ubuntu-latest
@@ -68,7 +68,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: linux-dist
-        path: dist/
+        path: dist/linux_dist.zip
 
   build_mac:
     runs-on: macos-latest
@@ -101,7 +101,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: mac-dist
-        path: dist/
+        path: dist/mac_dist.zip
 
   create_release:
     runs-on: ubuntu-latest
@@ -115,19 +115,28 @@ jobs:
       uses: actions/download-artifact@v2
       with:
         name: windows-dist
-        path: ./dist/windows
+        path: ./dist/
 
     - name: Download Linux artifact
       uses: actions/download-artifact@v2
       with:
         name: linux-dist
-        path: ./dist/linux
+        path: ./dist/
 
     - name: Download Mac artifact
       uses: actions/download-artifact@v2
       with:
         name: mac-dist
-        path: ./dist/mac
+        path: ./dist/
+
+    - name: Unzip Windows artifact
+      run: unzip ./dist/windows_dist.zip -d ./dist/windows/
+
+    - name: Unzip Linux artifact
+      run: unzip ./dist/linux_dist.zip -d ./dist/linux/
+
+    - name: Unzip Mac artifact
+      run: unzip ./dist/mac_dist.zip -d ./dist/mac/
 
     - name: Read package.json version
       id: get_version
@@ -144,15 +153,25 @@ jobs:
         draft: false
         prerelease: false
 
-    - name: Upload Release Asset (Windows)
+    - name: Upload Release Asset (Windows Setup)
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./dist/windows/
-        asset_name: windows_dist.zip
-        asset_content_type: application/zip
+        asset_path: ./dist/windows/ExcalidrawElectron\ Setup\ ${{ steps.get_version.outputs.version }}.exe
+        asset_name: ExcalidrawElectron_Setup_${{ steps.get_version.outputs.version }}.exe
+        asset_content_type: application/octet-stream
+
+    - name: Upload Release Asset (Windows Executable)
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./dist/windows/ExcalidrawElectron\ ${{ steps.get_version.outputs.version }}.exe
+        asset_name: ExcalidrawElectron_${{ steps.get_version.outputs.version }}.exe
+        asset_content_type: application/octet-stream
 
     - name: Upload Release Asset (Linux)
       uses: actions/upload-release-asset@v1
@@ -160,16 +179,36 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./dist/linux/
-        asset_name: linux_dist.zip
-        asset_content_type: application/zip
+        asset_path: ./dist/linux/*.AppImage
+        asset_name: ExcalidrawElectron_${{ steps.get_version.outputs.version }}.AppImage
+        asset_content_type: application/octet-stream
 
-    - name: Upload Release Asset (Mac)
+    - name: Upload Release Asset (Linux Deb)
       uses: actions/upload-release-asset@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./dist/mac/
-        asset_name: mac_dist.zip
+        asset_path: ./dist/linux/*.deb
+        asset_name: ExcalidrawElectron_${{ steps.get_version.outputs.version }}.deb
+        asset_content_type: application/vnd.debian.binary-package
+
+    - name: Upload Release Asset (Mac App)
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./dist/mac/*.dmg
+        asset_name: ExcalidrawElectron_${{ steps.get_version.outputs.version }}.dmg
+        asset_content_type: application/octet-stream
+
+    - name: Upload Release Asset (Mac Zip)
+      uses: actions/upload-release-asset@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        upload_url: ${{ steps.create_release.outputs.upload_url }}
+        asset_path: ./dist/mac/*.zip
+        asset_name: ExcalidrawElectron_${{ steps.get_version.outputs.version }}.zip
         asset_content_type: application/zip
