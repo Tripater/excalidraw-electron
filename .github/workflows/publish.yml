@@ -58,10 +58,24 @@ jobs:
             echo "::set-output name=version_changed::false"
           fi
 
+  set-force-build-version:
+    if: github.event.inputs.force_build == 'true'
+    runs-on: ubuntu-latest
+    outputs:
+      current_version: ${{ steps.extract_version.outputs.current_version }}
+    
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Extract current version
+        id: extract_version
+        run: echo "::set-output name=current_version::$(jq -r '.version' package.json)"
+
   build-linux:
     if: github.event.inputs.force_build == 'true' || needs.check-version.outputs.version_changed == 'true'
     runs-on: ubuntu-latest
-    needs: check-version
+    needs: [check-version, set-force-build-version]
 
     steps:
       - name: Checkout code
@@ -78,7 +92,7 @@ jobs:
   build-windows:
     if: github.event.inputs.force_build == 'true' || needs.check-version.outputs.version_changed == 'true'
     runs-on: windows-latest
-    needs: check-version
+    needs: [check-version, set-force-build-version]
 
     steps:
       - name: Checkout code
@@ -95,7 +109,7 @@ jobs:
   build-mac:
     if: github.event.inputs.force_build == 'true' || needs.check-version.outputs.version_changed == 'true'
     runs-on: macos-latest
-    needs: check-version
+    needs: [check-version, set-force-build-version]
 
     steps:
       - name: Checkout code
@@ -117,17 +131,15 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
-      
-      - name: Set current version output for force build
-        if: github.event.inputs.force_build == 'true'
-        run: echo "::set-output name=current_version::$(jq -r '.version' package.json)"
-      
+
       - name: Create Release and Tag
         uses: actions/github-script@v6
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const version = '${{ needs.check-version.outputs.current_version }}' || '${{ github.event.inputs.force_build && jq -r ".version" "package.json" }}';
+            const version = github.event.inputs.force_build == 'true'
+              ? '${{ needs.set-force-build-version.outputs.current_version }}'
+              : '${{ needs.check-version.outputs.current_version }}';
             const tag = `v${version}`;
             await github.git.createRef({
               owner: context.repo.owner,
@@ -145,7 +157,6 @@ jobs:
               prerelease: false,
             });
             
-            // Upload assets to release
             const fs = require('fs');
             const path = require('path');
             const distDir = path.resolve(__dirname, 'dist');
