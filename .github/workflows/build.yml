@@ -35,7 +35,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: windows-dist
-        path: dist/windows_dist.zip
+        path: dist/
 
   build_linux:
     runs-on: ubuntu-latest
@@ -68,7 +68,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: linux-dist
-        path: dist/linux_dist.zip
+        path: dist/
 
   build_mac:
     runs-on: macos-latest
@@ -101,7 +101,7 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: mac-dist
-        path: dist/mac_dist.zip
+        path: dist/
 
   create_release:
     runs-on: ubuntu-latest
