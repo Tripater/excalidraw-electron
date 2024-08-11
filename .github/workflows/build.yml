@@ -106,7 +106,7 @@ jobs:
   create_release:
     runs-on: ubuntu-latest
     needs: [build_windows, build_linux, build_mac]
-    if: ${{ success() }} # Ensures the job runs only if all dependent jobs succeed
+    if: ${{ success() }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v2
@@ -137,7 +137,7 @@ jobs:
       id: create_release
       uses: actions/create-release@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Ensure your token is correctly set up in repository secrets
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         tag_name: v${{ steps.get_version.outputs.version }}
         release_name: Release v${{ steps.get_version.outputs.version }}
@@ -147,7 +147,7 @@ jobs:
     - name: Upload Release Asset (Windows)
       uses: actions/upload-release-asset@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Ensure your token is correctly set up in repository secrets
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./dist/windows/
@@ -157,7 +157,7 @@ jobs:
     - name: Upload Release Asset (Linux)
       uses: actions/upload-release-asset@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Ensure your token is correctly set up in repository secrets
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./dist/linux/
@@ -167,7 +167,7 @@ jobs:
     - name: Upload Release Asset (Mac)
       uses: actions/upload-release-asset@v1
       env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Ensure your token is correctly set up in repository secrets
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
         asset_path: ./dist/mac/

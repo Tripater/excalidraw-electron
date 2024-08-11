@@ -3,13 +3,16 @@
   "name": "excalidraw-electron",
   "description": "A simple Electron wrapper for Excalidraw.",
   "version": "1.0.0",
-  "author": "Damiano Ernesti",
-  "email": "d.ernesti@constellation-dev.com",
+  "author": "Damiano Ernesti <d.ernesti@constellation-dev.com>",
   "license": "MIT",
   "private": true,
   "repository": {
 	"type": "git",
 	"url": "git+https://github.com/Tripater/excalidraw-electron.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Tripater/excalidraw-electron/issues",
+    "email": "project@hostname.com"
   },
   "main": "public/electron.mjs",
   "browserslist": [
