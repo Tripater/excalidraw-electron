@@ -143,6 +143,9 @@ jobs:
         release_name: Release v${{ steps.get_version.outputs.version }}
         draft: false
         prerelease: false
+        
+    - name: List folder structure
+      run: ls -lR ./dist
 
     - name: Upload Release Asset (Windows Setup)
       uses: actions/upload-release-asset@v1
