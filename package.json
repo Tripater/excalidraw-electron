@@ -4,6 +4,7 @@
   "description": "A simple Electron wrapper for Excalidraw.",
   "version": "1.0.0",
   "author": "Damiano Ernesti",
+  "email": "d.ernesti@constellation-dev.com",
   "license": "MIT",
   "private": true,
   "repository": {
