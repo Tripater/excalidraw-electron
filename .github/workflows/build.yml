@@ -153,7 +153,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./dist/windows_dist/ExcalidrawElectron\ Setup\ ${{ steps.get_version.outputs.version }}.exe
+        asset_path: ./dist/ExcalidrawElectron\ Setup\ ${{ steps.get_version.outputs.version }}.exe
         asset_name: ExcalidrawElectron_Setup_${{ steps.get_version.outputs.version }}.exe
         asset_content_type: application/octet-stream
 
@@ -163,7 +163,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./dist/windows_dist/ExcalidrawElectron\ ${{ steps.get_version.outputs.version }}.exe
+        asset_path: ./dist/ExcalidrawElectron\ ${{ steps.get_version.outputs.version }}.exe
         asset_name: ExcalidrawElectron_${{ steps.get_version.outputs.version }}.exe
         asset_content_type: application/octet-stream
 
@@ -173,7 +173,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./dist/linux_dist/*.AppImage
+        asset_path: ./dist/*.AppImage
         asset_name: ExcalidrawElectron_${{ steps.get_version.outputs.version }}.AppImage
         asset_content_type: application/octet-stream
 
@@ -183,7 +183,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./dist/linux_dist/*.deb
+        asset_path: ./dist/*.deb
         asset_name: ExcalidrawElectron_${{ steps.get_version.outputs.version }}.deb
         asset_content_type: application/vnd.debian.binary-package
 
@@ -193,7 +193,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./dist/mac_dist/*.dmg
+        asset_path: ./dist/*.dmg
         asset_name: ExcalidrawElectron_${{ steps.get_version.outputs.version }}.dmg
         asset_content_type: application/octet-stream
 
@@ -203,6 +203,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./dist/mac/*.zip
+        asset_path: ./dist/*.zip
         asset_name: ExcalidrawElectron_${{ steps.get_version.outputs.version }}.zip
         asset_content_type: application/zip

@@ -11,8 +11,8 @@
 	"url": "git+https://github.com/Tripater/excalidraw-electron.git"
   },
   "bugs": {
-    "url": "https://github.com/Tripater/excalidraw-electron/issues",
-    "email": "project@hostname.com"
+	"url": "https://github.com/Tripater/excalidraw-electron/issues",
+	"email": "project@hostname.com"
   },
   "main": "public/electron.mjs",
   "browserslist": [
@@ -62,6 +62,7 @@
 	  "main": "public/electron.mjs"
 	},
 	"mac": {
+	  "category": "public.app-category.graphics-design",
 	  "target": [
 		"dmg",
 		"zip"
@@ -86,6 +87,7 @@
 	  "icon": "assets/icon.ico"
 	},
 	"linux": {
+	  "category": "Graphics",
 	  "target": [
 		"AppImage",
 		"deb"
