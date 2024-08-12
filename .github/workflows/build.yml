@@ -173,7 +173,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./dist/*.AppImage
+        asset_path: ./dist/ExcalidrawElectron-${{ steps.get_version.outputs.version }}.AppImage
         asset_name: ExcalidrawElectron-${{ steps.get_version.outputs.version }}.AppImage
         asset_content_type: application/octet-stream
 
@@ -183,7 +183,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./dist/*.deb
+        asset_path: ./dist/ExcalidrawElectron_${{ steps.get_version.outputs.version }}_amd64.deb
         asset_name: ExcalidrawElectron_${{ steps.get_version.outputs.version }}_amd64.deb
         asset_content_type: application/vnd.debian.binary-package
 
@@ -193,7 +193,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./dist/*.dmg
+        asset_path: ./dist/ExcalidrawElectron-${{ steps.get_version.outputs.version }}-arm64.dmg
         asset_name: ExcalidrawElectron-${{ steps.get_version.outputs.version }}-arm64.dmg
         asset_content_type: application/octet-stream
 
@@ -203,6 +203,6 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       with:
         upload_url: ${{ steps.create_release.outputs.upload_url }}
-        asset_path: ./dist/*.zip
+        asset_path: ./dist/ExcalidrawElectron-${{ steps.get_version.outputs.version }}-arm64-mac.zip
         asset_name: ExcalidrawElectron-${{ steps.get_version.outputs.version }}-arm64-mac.zip
         asset_content_type: application/zip
